@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./App.css";
+import photo from "./assets/me.jpg"; // ✅ IMPORTANT (mets ton image ici)
 
 export default function App() {
 
@@ -46,14 +47,14 @@ export default function App() {
   ];
 
   const skills = {
-    languages: ["Java (8–21)", "Python", "JavaScript", "Node.js"],
-    backend: ["Spring Boot", "JEE", "API REST"],
-    frontend: ["Angular", "React", "React Native"],
-    devops: ["Docker", "GitLab CI/CD", "AWS (S3, Lambda)", "Kafka"],
-    databases: ["PostgreSQL", "MySQL", "MongoDB", "Oracle"],
-    tools: ["Git", "GitLab", "Jira", "Confluence", "Postman"],
-    methods: ["Agile (Scrum)", "TDD / BDD"],
-    systems: ["Linux", "Windows", "Cisco Unix Essentials"],
+    Langages: ["Java (8–21)", "Python", "JavaScript", "Node.js"],
+    Backend: ["Spring Boot", "JEE", "API REST"],
+    Frontend: ["Angular", "React", "React Native"],
+    "DevOps / Cloud": ["Docker", "GitLab CI/CD", "AWS (S3, Lambda)", "Kafka"],
+    "Bases de données": ["PostgreSQL", "MySQL", "MongoDB", "Oracle"],
+    Outils: ["Git", "GitLab", "Jira", "Confluence", "Postman"],
+    Méthodologies: ["Agile (Scrum)", "TDD / BDD"],
+    Systèmes: ["Linux", "Windows", "Cisco Unix Essentials"],
   };
 
   useEffect(() => {
@@ -79,7 +80,8 @@ export default function App() {
       {/* HERO */}
       <section className="hero reveal">
         <div className="glass">
-          <img src="/me.jpg" className="avatar" />
+
+          <img src={photo} className="avatar" />
 
           <h1>Khaoula Benyahia</h1>
           <h2>Ingénieure Full Stack</h2>
@@ -90,6 +92,7 @@ export default function App() {
             <a href="#exp">Voir mes expériences</a>
             <a href="mailto:khaoulabenyahiaa@gmail.com">Me contacter</a>
           </div>
+
         </div>
       </section>
 
@@ -112,32 +115,28 @@ export default function App() {
       <section id="exp" className="section reveal">
         <h2>Expériences professionnelles</h2>
 
-        <div className="experience">
+        {experiences.map((exp, i) => (
+          <div className="card reveal" key={i}>
 
-          {experiences.map((exp, i) => (
-            <div className="card reveal" key={i}>
-
-              <div className="card-header">
-                <h3>{exp.role} @ {exp.company}</h3>
-                <span>{exp.period}</span>
-              </div>
-
-              <ul>
-                {exp.details.map((d, j) => (
-                  <li key={j}>{d}</li>
-                ))}
-              </ul>
-
-              <div className="tags">
-                {exp.stack.map((s, k) => (
-                  <span key={k}>{s}</span>
-                ))}
-              </div>
-
+            <div className="card-header">
+              <h3>{exp.role} @ {exp.company}</h3>
+              <span>{exp.period}</span>
             </div>
-          ))}
 
-        </div>
+            <ul>
+              {exp.details.map((d, j) => (
+                <li key={j}>{d}</li>
+              ))}
+            </ul>
+
+            <div className="tags">
+              {exp.stack.map((s, k) => (
+                <span key={k}>{s}</span>
+              ))}
+            </div>
+
+          </div>
+        ))}
       </section>
 
       {/* SKILLS */}
@@ -145,17 +144,15 @@ export default function App() {
         <h2>Compétences</h2>
 
         <div className="skills-grid">
-
-          {Object.entries(skills).map(([category, items], i) => (
+          {Object.entries(skills).map(([cat, items], i) => (
             <div className="skill-card" key={i}>
-              <h3>{category}</h3>
+              <h3>{cat}</h3>
 
               {items.map((s, j) => (
                 <span key={j}>{s}</span>
               ))}
             </div>
           ))}
-
         </div>
       </section>
 
