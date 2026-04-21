@@ -6,7 +6,6 @@ body {
   overflow-x: hidden;
 }
 
-/* background glow */
 body::before {
   content: "";
   position: fixed;
